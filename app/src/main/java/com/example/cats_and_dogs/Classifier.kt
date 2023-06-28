@@ -2,18 +2,16 @@ package com.example.cats_and_dogs
 
 import android.content.res.AssetManager
 import android.graphics.Bitmap
-import java.io.FileInputStream
-import java.nio.ByteBuffer
-import java.nio.MappedByteBuffer
 import android.util.Log
 import org.tensorflow.lite.Interpreter
+import java.io.FileInputStream
+import java.nio.ByteBuffer
 import java.nio.ByteOrder
+import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 import java.util.*
 
-
-class Classifier (assetManager: AssetManager, modelPath: String, labelPath: String, inputSize: Int){
-
+class Classifier(assetManager: AssetManager, modelPath: String, labelPath: String, inputSize: Int) {
     private lateinit var interpreter: Interpreter
     private lateinit var labelList: List<String>
     private val INPUT_SIZE: Int = inputSize
@@ -27,7 +25,7 @@ class Classifier (assetManager: AssetManager, modelPath: String, labelPath: Stri
         var id: String = "",
         var title: String = "",
         var confidence: Float = 0F
-    ){
+    ) {
         override fun toString(): String {
             return "Title = $title, Confidence = $confidence"
         }
@@ -35,13 +33,13 @@ class Classifier (assetManager: AssetManager, modelPath: String, labelPath: Stri
 
     init {
         val options = Interpreter.Options()
-        options.setNumThreads(5)
-        options.setUseNNAPI(true)
+        options.numThreads = 5
+        options.useNNAPI = true
         interpreter = Interpreter(loadModelFile(assetManager, modelPath), options)
         labelList = loadLabelList(assetManager, labelPath)
     }
 
-    private fun loadModelFile(assetManager: AssetManager, modelPath: String):MappedByteBuffer{
+    private fun loadModelFile(assetManager: AssetManager, modelPath: String): MappedByteBuffer {
         val fileDescriptor = assetManager.openFd(modelPath)
         val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
         val fileChannel = inputStream.channel
@@ -50,40 +48,44 @@ class Classifier (assetManager: AssetManager, modelPath: String, labelPath: Stri
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
 
-    fun recognizeImage(bitmap: Bitmap): List<Recognition>{
-        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE,INPUT_SIZE, false)
+    private fun loadLabelList(assetManager: AssetManager, labelPath: String): List<String> {
+        return assetManager.open(labelPath).bufferedReader().useLines { it.toList() }
+    }
+
+    fun recognizeImage(bitmap: Bitmap): List<Recognition> {
+        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false)
         val byteBuffer = convertBitmapToByteBuffer(scaledBitmap)
-        val result = Array(1){FloatArray(labelList.size)}
+        val result = Array(1) { FloatArray(labelList.size) }
         interpreter.run(byteBuffer, result)
         return getSortedResult(result)
     }
-    private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer{
-        val byteBuffer = ByteBuffer.allocateDirect(4 *  INPUT_SIZE * INPUT_SIZE * PIXEL_SIZE)
+
+    private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
+        val byteBuffer = ByteBuffer.allocateDirect(4 * INPUT_SIZE * INPUT_SIZE * PIXEL_SIZE)
         byteBuffer.order(ByteOrder.nativeOrder())
         val intValues = IntArray(INPUT_SIZE * INPUT_SIZE)
 
         bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
         var pixel = 0
-        for (i in 0 until INPUT_SIZE){
-            for(j in 0 until INPUT_SIZE) {
+        for (i in 0 until INPUT_SIZE) {
+            for (j in 0 until INPUT_SIZE) {
                 val input = intValues[pixel++]
 
-                byteBuffer.putFloat((((input.shr(16) and 0xFF) - IMAGE_MEAN) / IMAGE_STD))
-                byteBuffer.putFloat((((input.shr(8) and 0xFF) - IMAGE_MEAN) / IMAGE_STD))
+                byteBuffer.putFloat((((input shr 16) and 0xFF) - IMAGE_MEAN) / IMAGE_STD)
+                byteBuffer.putFloat((((input shr 8) and 0xFF) - IMAGE_MEAN) / IMAGE_STD)
                 byteBuffer.putFloat((((input and 0xFF) - IMAGE_MEAN) / IMAGE_STD))
             }
-
         }
         return byteBuffer
     }
 
-    private fun getSortedResult(labelProbArray: Array<FloatArray>): List<Classifier.Recognition> {
-        Log.d("Classifier", "List Size: (%d, %d, %d)".format(labelProbArray[0].size, labelList.size))
+    private fun getSortedResult(labelProbArray: Array<FloatArray>): List<Recognition> {
+        Log.d("Classifier", "List Size: (${labelProbArray[0].size}, ${labelList.size})")
 
         val pq = PriorityQueue(
             MAX_RESULTS,
-            Comparator<Classifier.Recognition> { recognition1, recognition2 ->
-                java.lang.Float.compare(recognition2.confidence, recognition1.confidence)
+            Comparator<Recognition> { recognition1, recognition2 ->
+                recognition2.confidence.compareTo(recognition1.confidence)
             }
         )
 
@@ -91,7 +93,7 @@ class Classifier (assetManager: AssetManager, modelPath: String, labelPath: Stri
             val confidence = labelProbArray[0][i]
             if (confidence >= THRESHOLD) {
                 pq.add(
-                    Classifier.Recognition(
+                    Recognition(
                         "" + 1,
                         if (labelList.size > i) labelList[i] else "Unknown",
                         confidence
@@ -100,9 +102,9 @@ class Classifier (assetManager: AssetManager, modelPath: String, labelPath: Stri
             }
         }
 
-        Log.d("Classifier", "pq size: %d".format(pq.size))
+        Log.d("Classifier", "pq size: ${pq.size}")
 
-        val recognitions = ArrayList<Classifier.Recognition>()
+        val recognitions = ArrayList<Recognition>()
         val recognitionsSize = Math.min(pq.size, MAX_RESULTS)
         for (i in 0 until recognitionsSize) {
             recognitions.add(pq.poll())
@@ -110,5 +112,4 @@ class Classifier (assetManager: AssetManager, modelPath: String, labelPath: Stri
 
         return recognitions
     }
-
 }

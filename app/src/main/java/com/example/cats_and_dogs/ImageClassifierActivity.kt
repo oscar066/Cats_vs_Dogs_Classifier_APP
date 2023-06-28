@@ -1,14 +1,13 @@
 package com.example.cats_and_dogs
 
 import android.graphics.drawable.BitmapDrawable
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
 
     private val mInputSize = 224
     private val mModelPath = "converted_model.tflite"

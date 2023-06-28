@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.example.cats_and_dogs'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.cats_and_dogs"
@@ -45,9 +45,9 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.core:core-ktx:+'
     implementation 'org.tensorflow:tensorflow-lite:+'
-    implementation "org.jetbrains.anko:anko-commons:0.10.0"
+    //implementation "org.jetbrains.anko:anko-commons:0.10.0"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-   // implementation 'com.android.support:support-v4:28.0.0'
+    // implementation 'com.android.support:support-v4:28.0.0'
 }

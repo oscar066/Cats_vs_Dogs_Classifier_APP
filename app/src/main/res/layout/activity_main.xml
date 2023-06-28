@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:padding="8dp"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:background="#50FFFFF">
+    tools:context=".ImageClassifierActivity"
+    android:background="#8752EA">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -24,7 +24,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:scaleType="centerCrop"
-            android:src="@color/black"
+            android:src="@drawable/img0"
             android:layout_marginEnd="4dp"/>
 
         <ImageView
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_marginStart="4dp"
-            android:src="@color/black"/>
+            android:src="@drawable/img1"/>
 
     </LinearLayout>
 
@@ -52,7 +52,7 @@
             android:scaleType="centerCrop"
             android:id="@+id/iv_3"
             android:layout_height="match_parent"
-            android:src="@color/black"
+            android:src="@drawable/img2"
             android:layout_marginEnd="4dp"
             />
 
@@ -62,7 +62,7 @@
             android:id="@+id/iv_4"
             android:scaleType="centerCrop"
             android:layout_marginStart="4dp"
-            android:src="@color/black"/>
+            android:src="@drawable/img22"/>
 
     </LinearLayout>
 
@@ -80,7 +80,7 @@
             android:id="@+id/iv_5"
             android:scaleType="centerCrop"
             android:layout_height="match_parent"
-            android:src="@color/black"
+            android:src="@drawable/img4"
             android:layout_marginEnd="4dp"
             />
 
@@ -91,7 +91,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_marginStart="4dp"
-            android:src="@color/black"/>
+            android:src="@drawable/img17"/>
 
     </LinearLayout>
 
