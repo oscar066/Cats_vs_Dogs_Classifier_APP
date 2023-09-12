@@ -3,9 +3,12 @@ package com.example.cats_and_dogs
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.google.android.material.appbar.MaterialToolbar
 
 class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -17,9 +20,21 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
+        // Set the toolbar as the support action bar
+        setSupportActionBar(toolbar)
         initClassifier()
         initViews()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu_toolbar.xml menu resource
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        // Call the superclass method for creating the options menu
+        return super.onCreateOptionsMenu(menu)
+    }
+
 
     private fun initClassifier(){
         classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)

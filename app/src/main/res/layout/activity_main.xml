@@ -5,17 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+
     android:orientation="vertical"
     tools:context=".ImageClassifierActivity"
     android:background="#8752EA">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:layout_marginBottom="4dp"
+        android:padding="5dp"
+        android:layout_marginBottom="0dp"
         android:layout_weight="1">
 
         <ImageView
@@ -41,9 +48,10 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
         android:layout_height="0dp"
+        android:padding="5dp"
         android:gravity="center"
         android:layout_weight="1">
 
@@ -70,8 +78,9 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
+        android:padding="5dp"
         android:layout_weight="1">
 
         <ImageView
