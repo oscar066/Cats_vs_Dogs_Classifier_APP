@@ -1,13 +1,14 @@
-package com.example.cats_and_dogs
+package com.example.cats_and_dogs.view
 
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.cats_and_dogs.R
+import com.example.cats_and_dogs.tflite.Classifier
 import com.google.android.material.appbar.MaterialToolbar
 
 class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
@@ -36,7 +37,7 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
-    private fun initClassifier(){
+    private fun initClassifier() {
         classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
     }
 

@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical"
-    tools:context=".ImageClassifierActivity"
-    android:background="#8752EA">
+    tools:context=".view.ImageClassifierActivity"
+    android:background="#BBB8C0">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
