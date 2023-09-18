@@ -32,7 +32,10 @@
             android:layout_weight="1"
             android:scaleType="centerCrop"
             android:src="@drawable/img0"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="4dp"
+            tools:ignore="NestedWeights"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:layout_width="0dp"
@@ -41,7 +44,9 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_marginStart="4dp"
-            android:src="@drawable/img1"/>
+            android:src="@drawable/img1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO" />
 
     </LinearLayout>
 
@@ -55,22 +60,28 @@
         android:gravity="center"
         android:layout_weight="1">
 
-        <ImageView android:layout_width="0dp"
+        <ImageView
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:scaleType="centerCrop"
             android:id="@+id/iv_3"
             android:layout_height="match_parent"
             android:src="@drawable/img2"
             android:layout_marginEnd="4dp"
-            />
+            tools:ignore="NestedWeights"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO" />
 
-        <ImageView android:layout_width="0dp"
+        <ImageView
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:id="@+id/iv_4"
             android:scaleType="centerCrop"
             android:layout_marginStart="4dp"
-            android:src="@drawable/img22"/>
+            android:src="@drawable/img22"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO" />
 
     </LinearLayout>
 
@@ -89,9 +100,11 @@
             android:id="@+id/iv_5"
             android:scaleType="centerCrop"
             android:layout_height="match_parent"
-            android:src="@drawable/img4"
+            android:src="@drawable/img6"
             android:layout_marginEnd="4dp"
-            />
+            tools:ignore="NestedWeights"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO" />
 
         <ImageView
             android:layout_width="0dp"
@@ -100,7 +113,9 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:layout_marginStart="4dp"
-            android:src="@drawable/img17"/>
+            android:src="@drawable/img17"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="TODO" />
 
     </LinearLayout>
 

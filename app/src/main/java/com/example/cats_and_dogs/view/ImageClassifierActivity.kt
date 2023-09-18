@@ -1,10 +1,12 @@
 package com.example.cats_and_dogs.view
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import com.example.cats_and_dogs.R
@@ -18,6 +20,7 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
     private val mLabelPath = "label.txt"
     private lateinit var classifier: Classifier
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,6 +30,11 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         setSupportActionBar(toolbar)
         initClassifier()
         initViews()
+
+        //val cameraButton =  findViewById<ImageButton>(R.id.menu_camera)
+        //cameraButton.setOnClickListener {
+            //Toast.makeText(this,"Camara clicked", Toast.LENGTH_SHORT).show()
+        //}
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,13 +57,30 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<ImageView>(R.id.iv_5).setOnClickListener(this)
         findViewById<ImageView>(R.id.iv_6).setOnClickListener(this)
     }
-    override fun onClick(view: View?){
-        val bitmap = ((view as ImageView).drawable as BitmapDrawable).bitmap
+    override fun onClick(view: View?) {
+        val bitmap = ((view as? ImageView)?.drawable as? BitmapDrawable)?.bitmap
 
-        val result = classifier.recognizeImage(bitmap)
+        if (bitmap != null) {
+            val results = classifier.recognizeImage(bitmap)
 
-        runOnUiThread{
-            Toast.makeText(this, result.get(0).title, Toast.LENGTH_SHORT).show()
+            if (results.isNotEmpty()) {
+                val topResult = results[0]
+
+                val title = topResult.title
+                val confidence = topResult.confidence
+
+                val message = "Title: $title\nConfidence: $confidence"
+
+                runOnUiThread {
+                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                // Handle the case where no objects were recognized
+                runOnUiThread {
+                    Toast.makeText(this, "No objects recognized", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
+
 }
