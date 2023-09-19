@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -30,11 +31,6 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         setSupportActionBar(toolbar)
         initClassifier()
         initViews()
-
-        //val cameraButton =  findViewById<ImageButton>(R.id.menu_camera)
-        //cameraButton.setOnClickListener {
-            //Toast.makeText(this,"Camara clicked", Toast.LENGTH_SHORT).show()
-        //}
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,6 +38,18 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         menuInflater.inflate(R.menu.menu_toolbar, menu)
         // Call the superclass method for creating the options menu
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_camera -> {
+                // Handle the camera button click here
+                Toast.makeText(this,"Camera clicked", Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 
