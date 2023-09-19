@@ -1,9 +1,13 @@
 package com.example.cats_and_dogs.view
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,6 +17,8 @@ import android.widget.Toast
 import com.example.cats_and_dogs.R
 import com.example.cats_and_dogs.tflite.Classifier
 import com.google.android.material.appbar.MaterialToolbar
+
+private val REQUEST_IMAGE_CAPTURE = 1
 
 class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -44,7 +50,12 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         return when (item.itemId) {
             R.id.menu_camera -> {
                 // Handle the camera button click here
-                Toast.makeText(this,"Camera clicked", Toast.LENGTH_SHORT).show()
+                openCameraApp()
+                true
+            }
+            R.id.menu_settings -> {
+                // Handle the Settings button click
+                Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
                 true
             }
 
@@ -52,6 +63,14 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun openCameraApp() {
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        if (cameraIntent.resolveActivity(packageManager) != null) {
+            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
+        } else {
+            Toast.makeText(this, "Camera app not found", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private fun initClassifier() {
         classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)

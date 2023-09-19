@@ -4,11 +4,14 @@
     package="com.example.cats_and_dogs">
 
     <!-- Declare features -->
-    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="28"/>
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
+
 
 
     <application
