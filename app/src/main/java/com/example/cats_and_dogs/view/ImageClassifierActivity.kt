@@ -17,6 +17,7 @@ import android.widget.Toast
 import com.example.cats_and_dogs.R
 import com.example.cats_and_dogs.tflite.Classifier
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private val REQUEST_IMAGE_CAPTURE = 1
 
@@ -32,9 +33,16 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Appbar
         val toolbar = findViewById<MaterialToolbar>(R.id.toolbar)
         // Set the toolbar as the support action bar
         setSupportActionBar(toolbar)
+        supportActionBar?.title = "PetDetect Pro"
+
+        // bottom nav
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_nav)
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+
         initClassifier()
         initViews()
     }
@@ -56,6 +64,11 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
             R.id.menu_settings -> {
                 // Handle the Settings button click
                 Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.menu_upload -> {
+                //Handle the upload button click
+                Toast.makeText(this,"Upload on progress", Toast.LENGTH_SHORT).show()
                 true
             }
 
@@ -108,6 +121,21 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    // Bottom navigation
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.menu_upload -> {
+                Toast.makeText(this,"Uploading ...", Toast.LENGTH_SHORT).show()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.menu_video -> {
+                Toast.makeText(this,"Coming soon ...", Toast.LENGTH_SHORT).show()
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
     }
 
 }

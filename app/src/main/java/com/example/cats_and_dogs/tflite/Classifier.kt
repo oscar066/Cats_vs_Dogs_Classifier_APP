@@ -126,9 +126,11 @@ class Classifier(assetManager: AssetManager, modelPath: String, labelPath: Strin
 
         // Retrieve and return the top recognitions
         val recognitions = ArrayList<Classifier.Recognition>()
-        val recognitionsSize = Math.min(pq.size, MAX_RESULTS)
+        // change from Math.min to coerceAtMost
+        val recognitionsSize = pq.size.coerceAtMost(MAX_RESULTS)
         for (i in 0 until recognitionsSize) {
-            recognitions.add(pq.poll())
+            // some changes
+            pq.poll()?.let { recognitions.add(it) }
         }
         return recognitions
     }
