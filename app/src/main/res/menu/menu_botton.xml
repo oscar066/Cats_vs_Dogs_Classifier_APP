@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Configuring the upload button and live video button -->
+    <item
+        android:id="@+id/menu_upload"
+        android:icon="@android:drawable/ic_menu_upload"
+        android:title="@string/upload"/>
+
+    <item
+        android:id="@+id/menu_video"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="@string/video"/>
+
+
+</menu>
