@@ -7,6 +7,7 @@ import android.content.pm.ResolveInfo
 import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
@@ -14,12 +15,15 @@ import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.FileProvider
 import com.example.cats_and_dogs.R
 import com.example.cats_and_dogs.tflite.Classifier
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
 private val REQUEST_IMAGE_CAPTURE = 1
+private const val REQUEST_PHOTO = 2
 
 class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -58,7 +62,7 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
         return when (item.itemId) {
             R.id.menu_camera -> {
                 // Handle the camera button click here
-                openCameraApp()
+                //openCameraApp()
                 true
             }
             R.id.menu_settings -> {
@@ -71,19 +75,16 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this,"Upload on progress", Toast.LENGTH_SHORT).show()
                 true
             }
+            R.id.menu_video -> {
+                // handle the video button click
+                Toast.makeText(this,"Capturing Video", Toast.LENGTH_SHORT).show()
+                true
+            }
 
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun openCameraApp() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (cameraIntent.resolveActivity(packageManager) != null) {
-            startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE)
-        } else {
-            Toast.makeText(this, "Camera app not found", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     private fun initClassifier() {
         classifier = Classifier(assets, mModelPath, mLabelPath, mInputSize)
@@ -134,8 +135,13 @@ class ImageClassifierActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this,"Coming soon ...", Toast.LENGTH_SHORT).show()
                 return@OnNavigationItemSelectedListener true
             }
+            R.id.menu_camera -> {
+                Toast.makeText(this,"Coming soon ...", Toast.LENGTH_SHORT).show()
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }
+
 
 }

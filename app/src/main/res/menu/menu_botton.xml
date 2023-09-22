@@ -4,14 +4,19 @@
 
     <!-- Configuring the upload button and live video button -->
     <item
+        android:id="@+id/menu_camera"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="Camera"/>
+
+    <item
         android:id="@+id/menu_upload"
         android:icon="@android:drawable/ic_menu_upload"
         android:title="@string/upload"/>
 
+
     <item
         android:id="@+id/menu_video"
-        android:icon="@android:drawable/ic_menu_camera"
+        android:icon="@drawable/video_icon"
         android:title="@string/video"/>
-
 
 </menu>

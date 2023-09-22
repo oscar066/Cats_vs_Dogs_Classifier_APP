@@ -9,19 +9,23 @@
         android:id="@+id/menu_camera"
         android:icon="@android:drawable/ic_menu_camera"
         android:title="@string/camera"
-        app:showAsAction="ifRoom"/>
-
-    <!-- Add more menu items here -->
-    <item
-        android:id="@+id/menu_settings"
-        android:icon="@android:drawable/ic_menu_help"
-        android:title="@string/settings"
         app:showAsAction="collapseActionView"/>
 
     <item
         android:id="@+id/menu_upload"
         android:icon="@android:drawable/ic_menu_upload"
         android:title="Upload"
+        app:showAsAction="collapseActionView"/>
+
+    <item
+        android:id="@+id/menu_video"
+        android:icon="@drawable/video_icon"
+        android:title="Video"/>
+
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="@string/settings"
         app:showAsAction="collapseActionView"/>
 
 </menu>
