@@ -5,124 +5,185 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".view.ImageClassifierActivity"
-    android:background="#BBB8C0">
+    android:background="#F5F7FA">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        style="@style/Widget.MaterialComponents.Toolbar.Primary"/>
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        app:title="Pet Detector"
+        app:titleTextColor="@android:color/white"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <!-- Classification Result Card with improved design -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/classification_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        android:visibility="gone"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <TextView
+            android:id="@+id/classification_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="#2C3E50"
+            android:textStyle="bold"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Image Grid with improved spacing and design -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:layout_marginBottom="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/iv_1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img0"
-            android:layout_marginEnd="4dp"
-            tools:ignore="NestedWeights"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:id="@+id/iv_2"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/img1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
 
-    </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/iv_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img0"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Image 1" />
+                </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_height="0dp"
-        android:padding="5dp"
-        android:gravity="center"
-        android:layout_weight="1">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/iv_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/cat979"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Image 2" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:scaleType="centerCrop"
-            android:id="@+id/iv_3"
-            android:layout_height="match_parent"
-            android:src="@drawable/img22"
-            android:layout_marginEnd="4dp"
-            tools:ignore="NestedWeights"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:id="@+id/iv_4"
-            android:scaleType="centerCrop"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/cat1935"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/iv_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img22"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Image 3" />
+                </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/iv_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img1"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Image 4" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="0dp"
-        android:gravity="center"
-        android:padding="5dp"
-        android:layout_weight="1">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/iv_5"
-            android:scaleType="centerCrop"
-            android:layout_height="match_parent"
-            android:src="@drawable/cat1907"
-            android:layout_marginEnd="4dp"
-            tools:ignore="NestedWeights"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/iv_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/cat914"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Image 5" />
+                </androidx.cardview.widget.CardView>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/iv_6"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:layout_marginStart="4dp"
-            android:src="@drawable/img17"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
-
-    </LinearLayout>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
+                    <ImageView
+                        android:id="@+id/iv_6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img17"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="Image 6" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/menu_botton"/>
+        app:menu="@menu/menu_botton"
+        android:background="#FFFFFF"
+        app:elevation="8dp"/>
 
 </LinearLayout>

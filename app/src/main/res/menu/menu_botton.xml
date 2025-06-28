@@ -14,9 +14,15 @@
         android:title="@string/upload"/>
 
 
+<!--    <item-->
+<!--        android:id="@+id/menu_video"-->
+<!--        android:icon="@drawable/video_icon"-->
+<!--        android:title="@string/video"/>-->
+
     <item
         android:id="@+id/menu_video"
         android:icon="@drawable/video_icon"
-        android:title="@string/video"/>
+        android:title="About"/>
+
 
 </menu>

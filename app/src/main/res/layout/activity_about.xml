@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- App Icon -->
+<!--            <ImageView-->
+<!--                android:id="@+id/ivAppIcon"-->
+<!--                android:layout_width="120dp"-->
+<!--                android:layout_height="120dp"-->
+<!--                android:src="@drawable/app_icon"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginBottom="24dp"/>-->
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/tvAboutTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About PetDetector"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/tvAboutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PetDetector is an innovative machine learning application designed to revolutionize pet identification. Our advanced AI technology instantly recognizes and provides detailed insights about cats, dogs, and other furry companions."
+                android:textSize="16sp"
+                android:textColor="@color/secondary_text"
+                android:lineSpacingMultiplier="1.4"
+                android:textAlignment="center"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Features Section -->
+            <TextView
+                android:id="@+id/tvFeaturesTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Key Features"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Feature Cards -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMachineLearning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Advanced Machine Learning"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/primary_text"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cutting-edge AI algorithms for accurate pet identification and classification."
+                        android:textColor="@color/secondary_text"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMultiPetSupport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Multi-Pet Recognition"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/primary_text"
+                        android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Supports identification of multiple pet types with high accuracy and detail."
+                        android:textColor="@color/secondary_text"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Social Media Section -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connect With Us"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary_text"
+                android:gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Social Media Buttons -->
+            <LinearLayout
+                android:id="@+id/socialButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/btnGitHub"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_github"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="GitHub Repository"
+                    android:layout_marginHorizontal="12dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnEmail"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_email"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Contact Email"
+                    android:layout_marginHorizontal="12dp"/>
+
+                <ImageButton
+                    android:id="@+id/btnWebsite"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/ic_website"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Official Website"
+                    android:layout_marginHorizontal="12dp"/>
+            </LinearLayout>
+
+            <!-- App Version -->
+            <TextView
+                android:id="@+id/tvAppVersion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Version 1.0.0"
+                android:textColor="@color/secondary_text"
+                android:gravity="center"
+                android:layout_marginTop="24dp"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
